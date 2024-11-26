@@ -25,3 +25,8 @@ function placeMark(currentPlayer) {
         changePlayerTurn(currentPlayer);
     }
 }
+
+function changePlayerTurn(currentPlayer) {
+    currentPlayer = (currentPlayer === 1) ? 2 : 1;
+    placeMark(currentPlayer);
+}
