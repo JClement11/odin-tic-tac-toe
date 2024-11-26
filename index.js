@@ -1,3 +1,5 @@
+let currentPlayer = 1;
+
 const Gameboard = (function () {
     const gameboard = [
         ["", "", ""],
@@ -10,3 +12,16 @@ const Gameboard = (function () {
 function createPlayer(player) {
     return { player };
 };
+
+function placeMark(currentPlayer) {
+    const playerOneMark = "X";
+    const playerTwoMark = "O";
+    if (currentPlayer === 1) {
+        checkWinCondition();
+        changePlayerTurn(currentPlayer);
+    }
+    else if (currentPlayer === 2) {
+        checkWinCondition();
+        changePlayerTurn(currentPlayer);
+    }
+}
