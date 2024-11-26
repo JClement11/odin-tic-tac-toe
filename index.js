@@ -61,6 +61,7 @@ function checkWinCondition() {
 
     return false;
 }
+
 function renderBoard(gameboard) {
     let table = document.createElement("table");
 
@@ -69,6 +70,9 @@ function renderBoard(gameboard) {
 
         for (let cell of row) {
             let tableCell = document.createElement("td");
+            let button = document.createElement("button");
+            button.textContent = cell;
+            tableCell.appendChild(button);
             tableRow.appendChild(tableCell);
         }
 
