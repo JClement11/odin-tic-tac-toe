@@ -61,3 +61,21 @@ function checkWinCondition() {
 
     return false;
 }
+function renderBoard(gameboard) {
+    let table = document.createElement("table");
+
+    for (let row of gameboard) {
+        let tableRow = document.createElement("tr");
+
+        for (let cell of row) {
+            let tableCell = document.createElement("td");
+            tableRow.appendChild(tableCell);
+        }
+
+        table.appendChild(tableRow);
+    }
+
+    return table;
+}
+
+document.body.appendChild(renderBoard(Gameboard.gameboard));
