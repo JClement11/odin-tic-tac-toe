@@ -6,3 +6,7 @@ const Gameboard = (function () {
     ];
     return { gameboard };
 })();
+
+function createPlayer(player) {
+    return { player };
+};
