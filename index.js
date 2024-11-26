@@ -30,3 +30,34 @@ function changePlayerTurn(currentPlayer) {
     currentPlayer = (currentPlayer === 1) ? 2 : 1;
     placeMark(currentPlayer);
 }
+
+function checkWinCondition() {
+    for (let row = 0; row < 3; row++) {
+        if (Gameboard.gameboard[row][0] !== "" && Gameboard.gameboard[row][0] === Gameboard.gameboard[row][1] &&
+            Gameboard.gameboard[row][0] === Gameboard.gameboard[row][2]) {
+            return Gameboard.gameboard[row][0];
+        }
+    }
+
+    for (let column = 0; column < 3; column++) {
+        if (Gameboard.gameboard[0][column] !== "" && Gameboard.gameboard[0][column] === Gameboard.gameboard[1][column] &&
+            Gameboard.gameboard[0][column] === Gameboard.gameboard[2][column]) {
+            return Gameboard.gameboard[0][column];
+        }
+    }
+
+    if (Gameboard.gameboard[0][0] !== "" && Gameboard.gameboard[0][0] === Gameboard.gameboard[1][1] &&
+        Gameboard.gameboard[0][0] === Gameboard.gameboard[2][2]) {
+        return Gameboard.gameboard[0][0];
+    }
+    if (Gameboard.gameboard[0][2] !== "" && Gameboard.gameboard[0][2] === Gameboard.gameboard[1][1] &&
+        Gameboard.gameboard[0][2] === Gameboard.gameboard[2][0]) {
+        return Gameboard.gameboard[0][2];
+    }
+
+    if (Gameboard.gameboard.every(row => row.every(element => element !== ""))) {
+        return true;
+    }
+
+    return false;
+}
