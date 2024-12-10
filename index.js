@@ -12,6 +12,14 @@ const GameController = (function () {
     const playerOneMarker = "X";
     const playerTwoMarker = "O";
     let currentPlayer = playerOneMarker;
+    function placeMark(cell, row, column) {
+        if (cell.textContent === "") {
+            cell.textContent = currentPlayer;
+            Gameboard.gameboard[row][column] = currentPlayer;
+            checkWin(Gameboard.gameboard, currentPlayer);
+            changeTurn();
+        }
+    }
 
     function changeTurn() {
         currentPlayer = (currentPlayer === playerOneMarker) ? playerTwoMarker : playerOneMarker;
@@ -43,6 +51,6 @@ const GameController = (function () {
         return console.log("tie");
     }
 
-    return { changeTurn, checkWin };
+    return { placeMark, changeTurn, checkWin };
 })();
 
