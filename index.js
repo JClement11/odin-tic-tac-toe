@@ -58,7 +58,7 @@ const displayController = (function () {
 
 
     function displayBoard() {
-        const gameboardContainer = document.querySelector("#container");
+        const gameboardContainer = document.querySelector("#board-container");
         const table = document.createElement("table");
         let board = Gameboard.gameboard;
 
