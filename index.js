@@ -54,3 +54,30 @@ const GameController = (function () {
     return { placeMark, changeTurn, checkWin };
 })();
 
+const displayController = (function () {
+
+
+    function displayBoard() {
+        const gameboardContainer = document.querySelector("#container");
+        const table = document.createElement("table");
+        let board = Gameboard.gameboard;
+
+        board.forEach((row, rowIndex) => {
+            let tableRow = document.createElement("tr");
+            row.forEach((cell, columnIndex) => {
+                let cellContainer = document.createElement("td");
+                cellContainer.textContent = cell;
+
+                cellContainer.addEventListener("click", () => {
+                    GameController.placeMark(cellContainer, rowIndex, columnIndex);
+                });
+
+                tableRow.appendChild(cellContainer);
+            });
+            table.appendChild(tableRow);
+        });
+        gameboardContainer.appendChild(table);
+    }
+
+    return { displayBoard }
+})();
