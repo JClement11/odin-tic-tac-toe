@@ -13,6 +13,19 @@ const GameController = (function () {
     let playerTwo = [];
     let currentPlayerMark = playerOne.mark;
     let currentPlayerName = playerOne.name;
+
+    function startGame() {
+        const form = document.querySelector("form");
+        const startButton = document.querySelector("#start");
+        form.addEventListener("submit", () => {
+            playerOne = GameController.createPlayer(document.querySelector("#player1").value, "X");
+            playerTwo = GameController.createPlayer(document.querySelector("#player2").value, "O")
+            displayController.displayBoard();
+            form.remove();
+            startButton.remove();
+        });
+    }
+
     function createPlayer(name, mark) {
         name = name;
         mark = mark
@@ -57,7 +70,9 @@ const GameController = (function () {
         return console.log("tie");
     }
 
-    return { createPlayer, placeMark, changeTurn, checkWin };
+    startGame();
+
+    return { startGame, createPlayer, placeMark, changeTurn, checkWin };
 })();
 
 const displayController = (function () {
