@@ -9,9 +9,15 @@ const Gameboard = (function () {
 })();
 
 const GameController = (function () {
-    const playerOneMarker = "X";
-    const playerTwoMarker = "O";
-    let currentPlayer = playerOneMarker;
+    let playerOne = [];
+    let playerTwo = [];
+    let currentPlayerMark = playerOne.mark;
+    let currentPlayerName = playerOne.name;
+    function createPlayer(name, mark) {
+        name = name;
+        mark = mark
+        return { name, mark };
+    }
     function placeMark(cell, row, column) {
         if (cell.textContent === "") {
             cell.textContent = currentPlayer;
@@ -51,7 +57,7 @@ const GameController = (function () {
         return console.log("tie");
     }
 
-    return { placeMark, changeTurn, checkWin };
+    return { createPlayer, placeMark, changeTurn, checkWin };
 })();
 
 const displayController = (function () {
