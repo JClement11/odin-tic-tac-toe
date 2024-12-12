@@ -73,16 +73,19 @@ const GameController = (function () {
 
         for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
             if (board[rowIndex][0] === player && board[rowIndex][1] === player && board[rowIndex][2] === player) {
+                resetGame();
                 return console.log(`${currentPlayerName} Wins!`);
             }
         }
         for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
             if (board[0][columnIndex] === player && board[1][columnIndex] === player && board[2][columnIndex] === player) {
+                resetGame();
                 return console.log(`${currentPlayerName} Wins!`);
             }
         }
         if (board[0][0] === player && board[1][1] === player && board[2][2] === player ||
             board[0][2] === player && board[1][1] === player && board[2][0] === player) {
+            resetGame();
             return console.log(`${currentPlayerName} Wins!`);
         }
         for (let row = 0; row < 3; row++) {
@@ -92,6 +95,7 @@ const GameController = (function () {
                 }
             }
         }
+        resetGame();
         return console.log("tie");
     }
 
