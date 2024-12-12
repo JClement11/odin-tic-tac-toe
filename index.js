@@ -23,6 +23,11 @@ const GameController = (function () {
             displayController.displayBoard();
             form.remove();
             startButton.remove();
+
+            let boardContainer = document.querySelector("#board-container");
+            let resetButton = document.createElement("button");
+            resetButton.textContent = "RESET GAME";
+            boardContainer.appendChild(resetButton);
         });
     }
 
