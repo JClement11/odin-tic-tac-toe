@@ -19,16 +19,34 @@ const GameController = (function () {
         const startButton = document.querySelector("#start");
         form.addEventListener("submit", () => {
             playerOne = GameController.createPlayer(document.querySelector("#player1").value, "X");
-            playerTwo = GameController.createPlayer(document.querySelector("#player2").value, "O")
-            displayController.displayBoard();
+            playerTwo = GameController.createPlayer(document.querySelector("#player2").value, "O");
+            DisplayController.displayBoard();
             form.remove();
             startButton.remove();
 
             let boardContainer = document.querySelector("#board-container");
             let resetButton = document.createElement("button");
-            resetButton.textContent = "RESET GAME";
+            resetButton.textContent = "NEW GAME";
             boardContainer.appendChild(resetButton);
+            resetButton.addEventListener("click", resetGame);
         });
+    }
+
+    function resetGame() {
+        let board = Gameboard.gameboard;
+        const cells = document.querySelectorAll(".cell");
+        currentPlayerMark = playerOne.mark;
+        currentPlayerName = playerOne.name;
+
+        cells.forEach(cell => {
+            cell.textContent = "";
+        });
+
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                board[i][j] = "";
+            }
+        }
     }
 
     function createPlayer(name, mark) {
@@ -79,10 +97,10 @@ const GameController = (function () {
 
     startGame();
 
-    return { startGame, createPlayer, placeMark, changeTurn, checkWin };
+    return { startGame, resetGame, createPlayer, placeMark, changeTurn, checkWin };
 })();
 
-const displayController = (function () {
+const DisplayController = (function () {
     function displayBoard() {
         const gameboardContainer = document.querySelector("#board-container");
         const table = document.createElement("table");
@@ -92,6 +110,7 @@ const displayController = (function () {
             let tableRow = document.createElement("tr");
             row.forEach((cell, columnIndex) => {
                 let cellContainer = document.createElement("td");
+                cellContainer.classList.add("cell");
                 cellContainer.textContent = cell;
 
                 cellContainer.addEventListener("click", () => {
