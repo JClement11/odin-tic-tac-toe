@@ -9,13 +9,14 @@ const Gameboard = (function () {
 })();
 
 const GameController = (function () {
+    let gameOver = false;
     let playerOne = [];
     let playerTwo = [];
     let currentPlayerMark = playerOne.mark;
     let currentPlayerName = playerOne.name;
 
     function startGame() {
-        const form = document.querySelector("form");
+        const form = document.querySelector("#form-container");
         const startButton = document.querySelector("#start");
         form.addEventListener("submit", () => {
             playerOne = GameController.createPlayer(document.querySelector("#player1").value, "X");
@@ -60,7 +61,12 @@ const GameController = (function () {
             cell.textContent = currentPlayerMark;
             Gameboard.gameboard[row][column] = currentPlayerMark;
             checkWin(Gameboard.gameboard, currentPlayerMark);
-            changeTurn();
+            if (gameOver === false) {
+                changeTurn();
+            }
+            else {
+                gameOver = false;
+            }
         }
     }
 
@@ -73,20 +79,26 @@ const GameController = (function () {
 
         for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
             if (board[rowIndex][0] === player && board[rowIndex][1] === player && board[rowIndex][2] === player) {
+                gameOver = true;
+                console.log(`${currentPlayerName} Wins!`);
                 resetGame();
-                return console.log(`${currentPlayerName} Wins!`);
+                return true;
             }
         }
         for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
             if (board[0][columnIndex] === player && board[1][columnIndex] === player && board[2][columnIndex] === player) {
+                gameOver = true;
+                console.log(`${currentPlayerName} Wins!`);
                 resetGame();
-                return console.log(`${currentPlayerName} Wins!`);
+                return true;
             }
         }
         if (board[0][0] === player && board[1][1] === player && board[2][2] === player ||
             board[0][2] === player && board[1][1] === player && board[2][0] === player) {
+            gameOver = true;
+            console.log(`${currentPlayerName} Wins!`);
             resetGame();
-            return console.log(`${currentPlayerName} Wins!`);
+            return true;
         }
         for (let row = 0; row < 3; row++) {
             for (let column = 0; column < 3; column++) {
@@ -95,6 +107,7 @@ const GameController = (function () {
                 }
             }
         }
+        gameOver = true;
         resetGame();
         return console.log("tie");
     }
