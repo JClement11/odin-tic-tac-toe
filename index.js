@@ -40,6 +40,12 @@ const GameController = (function () {
             text = document.createTextNode(`${playerOne.name}'s turn`);
             paragraph.appendChild(text);
             textContainer.appendChild(paragraph);
+
+            let resetButton = document.createElement("button");
+            resetButton.classList.add("reset-button");
+            resetButton.textContent = "NEW GAME";
+            textContainer.appendChild(resetButton);
+            resetButton.addEventListener("click", resetGame);
         });
     }
 
