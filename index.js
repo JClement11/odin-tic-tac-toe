@@ -20,13 +20,17 @@ const GameController = (function () {
         const form = document.querySelector("#form-container");
         const startButton = document.querySelector("#start");
         form.addEventListener("submit", () => {
+            let boardContainer = document.querySelector("#board-container");
+            let heading = document.createElement("h1");
+            heading.textContent = "Tic Tac Toe";
+            boardContainer.appendChild(heading);
+
             playerOne = GameController.createPlayer(document.querySelector("#player1").value, "X");
             playerTwo = GameController.createPlayer(document.querySelector("#player2").value, "O");
             DisplayController.displayBoard();
             form.remove();
             startButton.remove();
 
-            let boardContainer = document.querySelector("#board-container");
             let resetButton = document.createElement("button");
             resetButton.textContent = "NEW GAME";
             boardContainer.appendChild(resetButton);
