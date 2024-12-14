@@ -14,6 +14,7 @@ const GameController = (function () {
     let playerTwo = [];
     let currentPlayerMark = playerOne.mark;
     let currentPlayerName = playerOne.name;
+    let text;
 
     function startGame() {
         const form = document.querySelector("#form-container");
@@ -30,6 +31,12 @@ const GameController = (function () {
             resetButton.textContent = "NEW GAME";
             boardContainer.appendChild(resetButton);
             resetButton.addEventListener("click", resetGame);
+
+            let textContainer = document.querySelector("#text-container");
+            let paragraph = document.createElement("p");
+            text = document.createTextNode(`${playerOne.name}'s turn`);
+            paragraph.appendChild(text);
+            textContainer.appendChild(paragraph);
         });
     }
 
@@ -38,6 +45,7 @@ const GameController = (function () {
         const cells = document.querySelectorAll(".cell");
         currentPlayerMark = playerOne.mark;
         currentPlayerName = playerOne.name;
+        text.textContent = `${currentPlayerName}'s turn`;
 
         cells.forEach(cell => {
             cell.textContent = "";
@@ -73,6 +81,7 @@ const GameController = (function () {
     function changeTurn() {
         currentPlayerMark = (currentPlayerMark === playerOne.mark) ? playerTwo.mark : playerOne.mark;
         currentPlayerName = (currentPlayerName === playerOne.name) ? playerTwo.name : playerOne.name;
+        text.textContent = `${currentPlayerName}'s turn`;
     }
 
     function checkWin(board, player) {
