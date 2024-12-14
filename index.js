@@ -19,7 +19,8 @@ const GameController = (function () {
     function startGame() {
         const form = document.querySelector("#form-container");
         const startButton = document.querySelector("#start");
-        form.addEventListener("submit", () => {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
             playerOne = GameController.createPlayer(document.querySelector("#player1").value, "X");
             playerTwo = GameController.createPlayer(document.querySelector("#player2").value, "O");
             DisplayController.displayBoard();
