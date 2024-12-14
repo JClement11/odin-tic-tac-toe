@@ -10,8 +10,8 @@ const Gameboard = (function () {
 
 const GameController = (function () {
     let gameOver = false;
-    let playerOne = [];
-    let playerTwo = [];
+    let playerOne = {};
+    let playerTwo = {};
     let currentPlayerMark = playerOne.mark;
     let currentPlayerName = playerOne.name;
     let text;
