@@ -12,8 +12,8 @@ const GameController = (function () {
     let gameOver = false;
     let playerOne = {};
     let playerTwo = {};
-    let currentPlayerMark = playerOne.mark;
-    let currentPlayerName = playerOne.name;
+    let currentPlayerMark = "";
+    let currentPlayerName = "";
     let text;
 
     function startGame() {
@@ -23,6 +23,8 @@ const GameController = (function () {
             e.preventDefault();
             playerOne = GameController.createPlayer(document.querySelector("#player1").value, "X");
             playerTwo = GameController.createPlayer(document.querySelector("#player2").value, "O");
+            currentPlayerMark = playerOne.mark;
+            currentPlayerName = playerOne.name;
             DisplayController.displayBoard();
             form.remove();
             startButton.remove();
