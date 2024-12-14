@@ -1,0 +1,86 @@
+  body {
+    display: grid;
+    grid-template-columns: 40% 60%;
+  }
+
+  #form-container {
+    display: grid;
+    grid-template-columns: 100% 30%;
+  }
+
+  label {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+
+  #player1, #player2 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  #start {
+    margin-top: 2rem;
+    margin-left: 25rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  #board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5rem;
+    width: 80%;
+  }
+
+  #text-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+  }
+  
+
+  h1 {
+    font-size: 3rem;
+  }
+  
+  table, td {
+    border: 5px solid black;
+    border-collapse: collapse;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td {
+    width: 100px;
+    height: 200px;
+  }
+
+  .cell {
+    font-size: 7rem;
+    text-align: center;
+  }
+
+  .hover-cell:hover {
+    background-color: #B9F18C
+  }
+
+  p {
+    font-size: 2rem;
+  }
+
+  .reset-button {
+    width: 10%;
+    margin-top: 2rem;
+    padding: .5rem;
+  }
+
+  .x {
+    color: blue;
+  }
+
+  .o {
+    color: red;
+  }
