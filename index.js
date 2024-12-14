@@ -29,12 +29,6 @@ const GameController = (function () {
             form.remove();
             startButton.remove();
 
-            let boardContainer = document.querySelector("#board-container");
-            let resetButton = document.createElement("button");
-            resetButton.textContent = "NEW GAME";
-            boardContainer.appendChild(resetButton);
-            resetButton.addEventListener("click", resetGame);
-
             let textContainer = document.querySelector("#text-container");
             let paragraph = document.createElement("p");
             text = document.createTextNode(`${playerOne.name}'s turn`);
@@ -52,12 +46,16 @@ const GameController = (function () {
     function resetGame() {
         let board = Gameboard.gameboard;
         const cells = document.querySelectorAll(".cell");
+
         currentPlayerMark = playerOne.mark;
         currentPlayerName = playerOne.name;
         text.textContent = `${currentPlayerName}'s turn`;
 
         cells.forEach(cell => {
             cell.textContent = "";
+            cell.classList.add("hover-cell");
+            cell.classList.remove("x");
+            cell.classList.remove("o");
         });
 
         for (let i = 0; i < board.length; i++) {
@@ -77,6 +75,13 @@ const GameController = (function () {
         if (cell.textContent === "") {
             cell.textContent = currentPlayerMark;
             Gameboard.gameboard[row][column] = currentPlayerMark;
+            cell.classList.remove("hover-cell");
+            if (currentPlayerMark === "X") {
+                cell.classList.add("x");
+            }
+            else if (currentPlayerMark === "O") {
+                cell.classList.add("o");
+            }
             checkWin(Gameboard.gameboard, currentPlayerMark);
             if (gameOver === false) {
                 changeTurn();
@@ -154,6 +159,7 @@ const DisplayController = (function () {
             row.forEach((cell, columnIndex) => {
                 let cellContainer = document.createElement("td");
                 cellContainer.classList.add("cell");
+                cellContainer.classList.add("hover-cell");
                 cellContainer.textContent = cell;
 
                 cellContainer.addEventListener("click", () => {
